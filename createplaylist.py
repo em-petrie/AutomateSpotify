@@ -15,9 +15,18 @@ from secrets import spotify_token, spotify_user_id
 
 class CreatePlaylist:
     def __init__(self):
-        pass
+        self.youtube_client = self.get_youtube_client()
+        self.all_song_info = {}
     def get_youtube_client(self):
-        pass
+        """Log into YouTube, copied from YouTube Data API"""
+        # Disable OAuthlib's HTTPS verification when running locally. DO NOT leave enabled in production.
+        os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+        api_service_name = "YouTube"
+        api_version = "v3"
+        client_secrets_file = "clientsecret.json"
+
+        # Pull credentials, created Google API client
     def get_liked_videos(self):
         pass
     def create_playlist(self):
