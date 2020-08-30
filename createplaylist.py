@@ -19,14 +19,24 @@ class CreatePlaylist:
         self.all_song_info = {}
     def get_youtube_client(self):
         """Log into YouTube, copied from YouTube Data API"""
-        # Disable OAuthlib's HTTPS verification when running locally. DO NOT leave enabled in production.
+        # Disable OAuthlib's HTTPS verification when running locally. DO NOT leave enabled in production
         os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
         api_service_name = "YouTube"
         api_version = "v3"
         client_secrets_file = "clientsecret.json"
 
-        # Pull credentials, created Google API client
+        # Pull credentials from API client
+        scopes = 
+        flow = 
+        credentials = flow.run_console()
+
+        # YouTube Data API
+        youtube_client = googleapiclient.discovery.build(api_service_name, api_version, credentials=credentials)
+
+        return youtube_client
+
+
     def get_liked_videos(self):
         pass
     def create_playlist(self):
