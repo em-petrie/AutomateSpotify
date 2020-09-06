@@ -127,4 +127,8 @@ class CreatePlaylist:
             raise ResponseException(response.status_code)
         response_json = response.json()
         return response_json
-        
+
+if __name__ == '__main__':
+    cp = CreatePlaylist()
+    cp.add_song_to_playlist()
+
