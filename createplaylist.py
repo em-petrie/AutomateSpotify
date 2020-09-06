@@ -17,6 +17,7 @@ class CreatePlaylist:
     def __init__(self):
         self.youtube_client = self.get_youtube_client()
         self.all_song_info = {}
+    
     def get_youtube_client(self):
         """Log into YouTube, copied from YouTube Data API"""
         # Disable OAuthlib's HTTPS verification when running locally. DO NOT leave enabled in production
@@ -27,8 +28,9 @@ class CreatePlaylist:
         client_secrets_file = "clientsecret.json"
 
         # Pull credentials from API client
-        scopes = 
-        flow = 
+        scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
+        flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
+            client_secrets_file, scopes)
         credentials = flow.run_console()
 
         # YouTube Data API
