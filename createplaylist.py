@@ -34,13 +34,20 @@ class CreatePlaylist:
         credentials = flow.run_console()
 
         # YouTube Data API
-        youtube_client = googleapiclient.discovery.build(api_service_name, api_version, credentials=credentials)
+        youtube_client = googleapiclient.discovery.build(
+            api_service_name, api_version, credentials=credentials)
 
         return youtube_client
 
 
     def get_liked_videos(self):
-        pass
+        """Find liked videos and create a dictionary of important song information"""
+        request = self.youtube_client.videos().list(
+            part = "snippet, contentDetails, statistics",
+            myRating = "like"
+        )
+        response = request.execute()
+        
     def create_playlist(self):
         pass
     def get_spotify_url(self):
