@@ -41,7 +41,7 @@ class CreatePlaylist:
 
 
     def get_liked_videos(self):
-        """Find liked videos and create a dictionary of important song information"""
+        """Find liked videos and create a dictionary of the important song information"""
         request = self.youtube_client.videos().list(
             part = "snippet, contentDetails, statistics",
             myRating = "like"
@@ -88,7 +88,7 @@ class CreatePlaylist:
         return response_json["id"]
 
     def get_spotify_uri(self, song_name, artist):
-        """Search for the song"""
+        """Search for songs"""
         query = "https://api.spotify.com/v1/search?query=track%3A{}+artist%3A{}&type=track&offset=0&limit=20".format(
             song_name,
             artist
@@ -106,4 +106,4 @@ class CreatePlaylist:
         return uri
 
     def add_song_to_playlist(self):
-        pass
+        """Add songs from liked videos to the new Spotify playlist"""
