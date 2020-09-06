@@ -47,7 +47,17 @@ class CreatePlaylist:
             myRating = "like"
         )
         response = request.execute()
-        
+
+        for item in response["items"]:
+            video_title = item["snippet"]["title"]
+            youtube_url = "https://www.youtube.com/watch?v={}".format(
+                item["id"]
+            )
+            video = youtube_dl.YouTubeDL({}).extract_info(
+                youtube_url, download = False)
+            song_name = video["track"]
+            artist = video["artist"]
+
     def create_playlist(self):
         pass
     def get_spotify_url(self):
