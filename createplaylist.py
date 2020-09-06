@@ -107,3 +107,24 @@ class CreatePlaylist:
 
     def add_song_to_playlist(self):
         """Add songs from liked videos to the new Spotify playlist"""
+        self.get_liked_videos()
+        uris = [info["spotify_uri"]
+            for song, info in self.all_song_info.items()]
+        playlist_id = self.create_playlist()
+        request_data = json.dumps(uris)
+        query = "https://api.spotify.com/v1/playlists/{}/tracks".format(
+            playlist_id)
+        response = request.post(
+            query,
+            data = request_data,
+            headers = {
+                "Content-Type": "application/json",
+                "Authorisation": "Bearer {}".format(spotify_token)
+            }
+        )
+        
+        if response.status_code != 200:
+            raise ResponseException(response.status_code)
+        response_json = response.json()
+        return response_json
+        
