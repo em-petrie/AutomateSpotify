@@ -58,8 +58,35 @@ class CreatePlaylist:
             song_name = video["track"]
             artist = video["artist"]
 
+            if song_name is not None and artist is not None:
+                self.all_song_info[video_title] = {
+                    "youtube_url": youtube_url,
+                    "song_name": song_name,
+                    "artist": artist,
+
+                    "spotify_uri": self.get_spotify_uri(song_name, artist)
+                }
+
     def create_playlist(self):
-        pass
+        """Add a new playlist"""
+        request_body = json.dumps({
+            "name": "YouTube Liked Videos",
+            "description": "All liked YouTube videos",
+            "public": True
+        })
+        query = "https://api.spotify.com/v1/users/{}/playlists".format(
+            spotify_user_id)
+        response = requests.post(
+            query,
+            data = request_body,
+            headers = {
+                "Content-Type": "application/json",
+                "Authorisation": "Bearer {}".format(spotify_token)
+            }
+        )
+        response_json = response.json()
+        return response_json["id"]
+
     def get_spotify_url(self):
         pass
     def add_song_to_playlist(self):
