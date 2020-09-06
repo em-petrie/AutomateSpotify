@@ -87,7 +87,7 @@ class CreatePlaylist:
         response_json = response.json()
         return response_json["id"]
 
-    def get_spotify_url(self):
+    def get_spotify_uri(self):
         pass
     def add_song_to_playlist(self):
         pass
