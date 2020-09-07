@@ -116,7 +116,7 @@ class CreatePlaylist:
         request_data = json.dumps(uris)
         query = "https://api.spotify.com/v1/playlists/{}/tracks".format(
             playlist_id)
-        response = request.post(
+        response = requests.post(
             query,
             data = request_data,
             headers = {
