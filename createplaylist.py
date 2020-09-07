@@ -68,7 +68,7 @@ class CreatePlaylist:
                 }
 
     def create_playlist(self):
-        """Add a new playlist"""
+        """Create a new Spotify playlist"""
         request_body = json.dumps({
             "name": "YouTube Liked Videos",
             "description": "All liked YouTube videos",
@@ -102,6 +102,8 @@ class CreatePlaylist:
         )
         response_json = response.json()
         songs = response_json["tracks"]["items"]
+
+        uri = songs[0]["uri"]
 
         return uri
 
