@@ -39,7 +39,6 @@ class CreatePlaylist:
 
         return youtube_client
 
-
     def get_liked_videos(self):
         """Find liked videos and create a dictionary of the important song information"""
         request = self.youtube_client.videos().list(
