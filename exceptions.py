@@ -7,5 +7,4 @@ class ResponseException(Exception):
     def __str__(self):
         return self.message + f"Response returned status code {status_code}"
 
-
- 
+        
