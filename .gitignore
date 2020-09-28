@@ -2,6 +2,7 @@ config.toml
 venv/
 .vscode/
 clientsecret.json
+secrets.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
