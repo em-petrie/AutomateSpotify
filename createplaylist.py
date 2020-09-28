@@ -135,7 +135,7 @@ class CreatePlaylist:
             data = request_body,
             headers = {
                 "Content-Type": "application/json",
-                "Authorisation": "Bearer {}".format(self._spotify_token) 
+                "Authorisation": "Bearer {}".format(spotify_token) 
             }
         )
         response_json = response.json()
@@ -143,7 +143,7 @@ class CreatePlaylist:
         return response_json["id"]
 
     def get_spotify_uri(self, song_name, artist):
-        """Search for songs"""
+        """Search for song"""
         query = "https://api.spotify.com/v1/search?query=track%3A{}+artist%3A{}&type=track&offset=0&limit=20".format(
             song_name,
             artist
