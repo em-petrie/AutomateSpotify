@@ -44,10 +44,10 @@ class CreatePlaylist:
         # self.spotify_token = self.get_spotify_token()
         # print(f"token: {self.spotify_token}")
 
-    def birdy_tmp(self):
-        birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
-        results = self.spotify.artist_albums(birdy_uri, album_type='album')
-        print(results)
+  # def birdy_tmp(self):
+        # birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
+        # results = self.spotify.artist_albums(birdy_uri, album_type='album')
+        # print(results)
 
 
 
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     print(data)
     print("roger")
     # pprint(data["oauth2Providers"]["google"]["clientId"])
-    # token="BQBNoE-ipQCSUvFVsPKW_iKVjQVKHBGKSeLPasieBdYf6jmc5RQgMTaL0JHVA7JVQBFGKIWjl5f1Q9DcrmOoYtB-jjeqy1zSX3lGFz7ueehmpwGBv1wJZoDPRN8gzVfdrQsN53d9EXn-anaHDHoCMdw9hdxKqc29NcJ38Zs2CLvKAJQ"
+    # token=""
     cp = CreatePlaylist(data)
     print("we here")
     # pid = cp.create_playlist()
