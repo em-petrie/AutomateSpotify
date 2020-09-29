@@ -47,13 +47,6 @@ class CreatePlaylist:
         # self.spotify_token = self.get_spotify_token()
         # print(f"token: {self.spotify_token}")
 
-  # def birdy_tmp(self):
-        # birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
-        # results = self.spotify.artist_albums(birdy_uri, album_type='album')
-        # print(results)
-
-
-
     # def set_spotify_headers(self):
        # headers = {}
        #  Basic <base64 encoded client_id:client_secret>
@@ -116,10 +109,9 @@ class CreatePlaylist:
                     "youtube_url": youtube_url,
                     "song_name": song_name,
                     "artist": artist,
-                    # Add spotify uri??
+                    # Add uris??
                     "spotify_uri": self.get_spotify_uri(song_name, artist)
                 }
-
     def create_playlist(self):
         """Create a new Spotify playlist"""
         request_body = json.dumps({
@@ -127,7 +119,7 @@ class CreatePlaylist:
             "description": "All liked YouTube videos",
             "public": True
         })
-        
+        # update uri
         query = "https://api.spotify.com/v1/users/{}/playlists".format(self.spotify_user_id)
         response = requests.post(
             query,
@@ -138,11 +130,12 @@ class CreatePlaylist:
             }
         )
         response_json = response.json()
-        # Should return playlist ID
+        # should return playlist ID
         return response_json["id"]
 
     def get_spotify_uri(self, song_name, artist):
         """Search for song"""
+        # update uri
         query = "https://api.spotify.com/v1/search?query=track%3A{}+artist%3A{}&type=track&offset=0&limit=20".format(
             song_name,
             artist
@@ -157,7 +150,7 @@ class CreatePlaylist:
         response_json = response.json()
         songs = response_json["tracks"]["items"]
 
-        # First song
+        # returns first song in search results
         uri = songs[0]["uri"]
 
         return uri
@@ -171,7 +164,7 @@ class CreatePlaylist:
         playlist_id = self.create_playlist()
 
         request_data = json.dumps(uris)
-
+        # update uri
         query = "https://api.spotify.com/v1/playlists/{}/tracks".format(
             playlist_id)
 
@@ -183,7 +176,7 @@ class CreatePlaylist:
                 "Authorisation": "Bearer {}".format(spotify_token)
             }
         )
-        # Check for valid response
+        # check for valid response
         if response.status_code != 200:
             raise ResponseException(response.status_code)
         response_json = response.json()
@@ -195,13 +188,6 @@ if __name__ == '__main__':
 
     # data = toml.load("config.toml") 
     # print(data)
-    # print("roger")
     # pprint(data["oauth2Providers"]["google"]["clientId"])
     # token=""
-    
-    # print("we here")
-    # pid = cp.create_playlist()
-    
-    # cp.birdy_tmp()
-    # cp.add_song_to_playlist()
 
