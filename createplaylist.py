@@ -96,6 +96,7 @@ class CreatePlaylist:
        
         for item in response["items"]:
             video_title = item["snippet"]["title"]
+            # error opening this url when running 
             youtube_url = "https://www.youtube.com/watch?v={}".format(
                 item["id"])
             
@@ -109,7 +110,6 @@ class CreatePlaylist:
                     "youtube_url": youtube_url,
                     "song_name": song_name,
                     "artist": artist,
-                    # Add uris??
                     "spotify_uri": self.get_spotify_uri(song_name, artist)
                 }
     def create_playlist(self):
@@ -130,13 +130,13 @@ class CreatePlaylist:
             }
         )
         response_json = response.json()
-        # should return playlist ID
+        # should return playlist ID for def add_song_to_playlist
         return response_json["id"]
 
     def get_spotify_uri(self, song_name, artist):
         """Search for song"""
         # update uri
-        query = "https://api.spotify.com/v1/search?query=track%3A{}+artist%3A{}&type=track&offset=0&limit=20".format(
+        query = "https://api.spotify.com/v1/search?type=track%2C%20artist&limit=20&offset=0".format(
             song_name,
             artist
         )
