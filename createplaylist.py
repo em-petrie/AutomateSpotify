@@ -74,12 +74,8 @@ class CreatePlaylist:
         scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
         flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
             client_secrets_file, scopes)
-        # flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(client_secrets_file, scopes)
-        # flow = google_auth_oauthlib.flow.Flow(client_type="web", )
         credentials = flow.run_console()
-        # flow.authorization_url()
-        # flow.fetch_token()
-        # credentials = flow.credentials
+        
         # YouTube Data API
         youtube_client = googleapiclient.discovery.build(
             api_service_name, api_version, credentials = credentials)
@@ -96,7 +92,7 @@ class CreatePlaylist:
        
         for item in response["items"]:
             video_title = item["snippet"]["title"]
-            # error opening this url when running 
+            # error opening this url when running ??
             youtube_url = "https://www.youtube.com/watch?v={}".format(
                 item["id"])
             
@@ -130,7 +126,7 @@ class CreatePlaylist:
             }
         )
         response_json = response.json()
-        # should return playlist ID for def add_song_to_playlist
+        # should return playlist ID for add_song_to_playlist
         return response_json["id"]
 
     def get_spotify_uri(self, song_name, artist):
@@ -150,7 +146,7 @@ class CreatePlaylist:
         response_json = response.json()
         songs = response_json["tracks"]["items"]
 
-        # returns first song in search results
+        # return first song from search results
         uri = songs[0]["uri"]
 
         return uri
@@ -176,7 +172,7 @@ class CreatePlaylist:
                 "Authorisation": "Bearer {}".format(spotify_token)
             }
         )
-        # check for valid response
+        # check response 
         if response.status_code != 200:
             raise ResponseException(response.status_code)
         response_json = response.json()
@@ -185,9 +181,4 @@ class CreatePlaylist:
 if __name__ == '__main__':
     cp = CreatePlaylist()
     cp.add_song_to_playlist()
-
-    # data = toml.load("config.toml") 
-    # print(data)
-    # pprint(data["oauth2Providers"]["google"]["clientId"])
-    # token=""
 
