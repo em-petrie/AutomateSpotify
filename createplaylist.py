@@ -23,43 +23,6 @@ class CreatePlaylist:
     def __init__(self):
         self.youtube_client = self.get_youtube_client()
         self.all_song_info = {}
-        
-        # self._spotify_dict = spotifyDict
-        # self._spotify_cid =  self._spotify_dict["oauth2Providers"]["spotify"]["clientId"]
-        # self._spotify_csecret = self._spotify_dict["oauth2Providers"]["spotify"]["clientSecret"]
-        # spotify_creds = SpotifyClientCredentials(client_id=self._spotify_cid, client_secret=self._spotify_csecret)
-        # self._redirect_uri =self._spotify_dict["oauth2Providers"]["spotify"]["redirectURL"]
-        # scope = 'playlist-modify-public'
-        # implicit = SpotifyImplicitGrant(client_id=self._spotify_cid, redirect_uri=self._redirect_uri, scope=scope)
-        # implicit.get_access_token()
-        # self._spotify_token = implicit.get_cached_token()["access_token"]
-        # print(f"yoooooo {token}")
-        
-        # self.spotify = spotipy.Spotify(client_credentials_manager=spotify_creds)
-        
-        # self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
-        # pkce = SpotifyPKCE(lient_id=self._spotify_cid, client_secret=self._spotify_csecret, redirect_uri=self._redirect_uri)
-
-        # self._spotify_token_uri = self._spotify_dict["oauth2Providers"]["spotify"]["auth_uri"]
-        # self._spotify_headers = self.set_spotify_headers()
-        # self._spotify_params = {}
-        # self._spotify_params["grant_type"] = "client_credentials"
-        # self.spotify_token = self.get_spotify_token()
-        # print(f"token: {self.spotify_token}")
-
-    # def set_spotify_headers(self):
-       # headers = {}
-       #  Basic <base64 encoded client_id:client_secret>
-       # field= f"{self._spotify_cid}:{self._spotify_csecret}"
-       # field_bytes = base64.b64encode(field.encode("ascii")).decode("ascii")
-       # headers["authorization"] = f"Basic {field_bytes}"
-
-    # def get_spotify_token(self): 
-        # r = requests.post(self._spotify_token_uri, headers=self._spotify_headers, data=self._spotify_params)
-        # r = requests.post(self._spotify_token_uri, data=self._spotify_params, auth=(self._spotify_cid, self._spotify_csecret))
-        # print(f"wtf -------- {r.text}")
-        # print(f" print req output: {r.json()}")
-        # return r.json()["access_token"]
 
     def get_youtube_client(self):
         """Log into YouTube, copied from YouTube Data API"""
