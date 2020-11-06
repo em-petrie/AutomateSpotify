@@ -14,10 +14,6 @@ import base64
 from exceptions import ResponseException
 from secrets import spotify_token, spotify_user_id
 
-# import spotipy
-# from spotipy.oauth2 import SpotifyClientCredentials
-# from spotipy.oauth2 import  SpotifyPKCE, SpotifyImplicitGrant
-
 
 class CreatePlaylist:
     def __init__(self):
